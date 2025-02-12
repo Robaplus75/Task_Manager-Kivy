@@ -1,0 +1,19 @@
+MDFloatLayout:
+	MDLabel:
+		id: task_label
+		halign: "center"
+		markup: True
+		text: "[b][u][size=48]Task Manager[/size][/u][/b]"
+		pos_hint: {'y': 0.45}
+
+	ScrollView:
+		post_hint: {"center_y": 0.5, "center_x": 0.5}
+		size_hint: 0.9, 0.8
+		MDList:
+			id: container
+
+	MDFloatingActionButton:
+		icon: "plus-thick"
+		# on_release:
+		elevation_normal: 12
+		post_hint: {"x": 0.45, "y": 0.04 }
