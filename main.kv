@@ -1,13 +1,16 @@
 MDFloatLayout:
+
 	MDLabel:
 		id: task_label
-		halign: "center"
 		markup: True
 		text: "[b][u][size=48]Task Manager[/size][/u][/b]"
-		pos_hint: {'y': 0.45}
+		size_hint_x: 1
+		pos_hint: {'center_x': .5, 'y': 0.45}
+		halign: 'center'
 
-	ScrollView:
-		post_hint: {"center_y": 0.5, "center_x": 0.5}
+
+	MDScrollView:
+		pos_hint: {"center_y": 0.5, "center_x": 0.5}
 		size_hint: 0.9, 0.8
 		MDList:
 			id: container
@@ -36,4 +39,25 @@ MDFloatLayout:
 			max_text_length: 50
 			on_text_validate: (app.add_task(task_text, date_text.text), app.close_dialog())
 
-	# Stopped at 27:30
+		MDIconButton:
+			icon: 'calendar'
+			on_release: root.show_date_picker()
+			padding: "10dp"
+
+	MDLabel:
+		spacing: "10dp"
+		id: date_text
+		text: root.selected_date
+
+	BoxLayout:
+		orientation: "horizontal"
+
+		MDRaisedButton:
+			text: "SAVE"
+			on_release: (app.add_task(task_text, date_text.text),app.close_dialog())
+
+		MDFlatButton:
+			text: "CANCEL"
+			on_release: app.close_dialog()
+
+		# stopped at 39:00
