@@ -4,7 +4,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.pickers import MDDatePicker
 from datetime import datetime
 from kivy.properties import StringProperty
-from kivymd.uix.list import TwoLineAvatarListItem, ILeftBody
+from kivymd.uix.list import TwoLineAvatarIconListItem, ILeftBody
 from kivymd.uix.selectioncontrol import MDCheckbox
 
 
@@ -26,9 +26,11 @@ class DialogContent(MDBoxLayout):
 		self.selected_date = str(date)
 
 
-class ListItemWithCheckbox(TwoLineAvatarListItem):
+class ListItemWithCheckbox(TwoLineAvatarIconListItem):
 	def __init__(self, pk=None, *args, **kwargs):
-		super()__init__(*args, **kwargs)
+		print(f"Text: {kwargs.get('text')}")
+		super().__init__(*args, **kwargs)
+
 		self.pk = pk
 
 	def mark(self, check, the_list_item):
@@ -64,7 +66,9 @@ class MainApp(MDApp):
 
 	def add_task(self, task, task_date):
 		print(task.text, task_date)
-		self.root.ids['container'].add_widget(ListItemWithCheckbox())
+		print("ONE")
+		self.root.ids['container'].add_widget(ListItemWithCheckbox(text=f"[b]{task.text}[/b]", secondary_text=task_date))
+		print("TWOO")
 		task.text = ''
 
 
