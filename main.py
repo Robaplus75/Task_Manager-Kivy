@@ -54,15 +54,20 @@ class MainApp(MDApp):
 		self.theme_cls.primary_palette = 'Teal'
 
 	def show_task_function(self):
+		print(f"Show the task, tasklist: {self.task_list_dialog}")
 		if not self.task_list_dialog:
 			self.task_list_dialog = MDDialog(
 				title = "Create Task",
 				type = "custom",
-				content_cls = DialogContent()
+				content_cls = DialogContent(),
+				on_dismiss=self.on_dialog_dismiss
 			)
 			self.task_list_dialog.open()
 	def close_dialog(self, *args, **kwargs):
 		self.task_list_dialog.dismiss()
+
+	def on_dialog_dismiss(self, widget):
+		self.task_list_dialog = None
 
 	def add_task(self, task, task_date):
 		print(task.text, task_date)
